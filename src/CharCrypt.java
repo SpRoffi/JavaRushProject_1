@@ -2,7 +2,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Coding {
+public class CharCrypt {
     ArrayList<Character> englishAlphabet = new ArrayList<>(Arrays.asList('A', 'B', 'C', 'D', 'E', 'F',
             'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
@@ -10,7 +10,7 @@ public class Coding {
     int j;
     Character character;
 
-    public ByteBuffer doCoding(ByteBuffer buffer, int k) {
+    public ByteBuffer doCrypt(ByteBuffer buffer, int k) {
         for (int i = 0; i < buffer.capacity(); i++) {
             character = (char) buffer.get(i);
 
@@ -21,8 +21,8 @@ public class Coding {
 
     private char codingChar(ArrayList<Character> list, int k) {
         j = list.indexOf(character);
-        j = (j + k) % 52;
-        if (j < 0) j = j + 52;
+        j = (j + k) % englishAlphabet.size();
+        if (j < 0) j = j + englishAlphabet.size();
         return list.get(j);
     }
 }
