@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class CharCrypt {
 
-    Constants constants = new Constants();
+    ArrayList<Character> eng = new Constants().getEnglishAlphabet();
     int j;
     Character character;
 
@@ -11,8 +11,8 @@ public class CharCrypt {
         for (int i = 0; i < buffer.capacity(); i++) {
             character = (char) buffer.get(i);
             //englishAlphabet
-            if (constants.getEnglishAlphabet().contains(character)) {
-                buffer.put(i, (byte) codingChar(constants.getEnglishAlphabet(), k));
+            if (eng.contains(character)) {
+                buffer.put(i, (byte) codingChar(eng, k));
             }
         }
         return buffer;
@@ -20,8 +20,8 @@ public class CharCrypt {
 
     private char codingChar(ArrayList<Character> list, int k) {
         j = list.indexOf(character);
-        j = (j + k) % constants.getEnglishAlphabet().size();
-        if (j < 0) j = j + constants.getEnglishAlphabet().size();
+        j = (j + k) % eng.size();
+        if (j < 0) j = j + eng.size();
         return list.get(j);
     }
 }
